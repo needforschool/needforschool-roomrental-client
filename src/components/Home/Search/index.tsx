@@ -1,65 +1,38 @@
-import { useForm } from "@hooks/useForm";
 import styled from "styled-components";
 import Button from "@components/Layout/Button";
 import { Room } from "@typeDefs/index";
-import axios from "axios";
-import endpoint from "@services/api";
 
 interface Props {
   rooms: Room[] | undefined;
-  setRooms: React.Dispatch<React.SetStateAction<Room[] | undefined>>;
+  onChange: (
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => void;
+  onSubmit: (event: React.FormEvent) => void;
+  values: any;
 }
 
-const Search: React.FC<Props> = ({ rooms, setRooms }: Props) => {
-  const handleSubmit = async () => {
-    console.log("Form submitted", values);
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "get",
-      url: `${endpoint}/rooms/search`,
-      params: {
-        ...values,
-      },
-    };
-
-    try {
-      const res = await axios(config);
-      if (res.data) setRooms(res.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const { onSubmit, onChange, values } = useForm(handleSubmit, {
-    firstname: "",
-    lastname: "",
-    email: "",
-    phone: "",
-    attendees: undefined,
-    morning: false,
-    afternoon: false,
-    date: undefined,
-    videoProjector: false,
-    whiteboard: false,
-    handicapAccess: false,
-  });
-
+const Search: React.FC<Props> = ({
+  rooms,
+  onChange,
+  onSubmit,
+  values,
+}: Props) => {
   return (
     <Container>
       <Form onSubmit={onSubmit}>
         <InputRow>
           <Input
             placeholder="Prénom"
-            name={"firstname"}
-            value={values?.firstname}
+            name={"firstName"}
+            value={values?.firstName}
             onChange={onChange}
           />
           <Input
             placeholder="Nom"
-            name={"lastname"}
-            value={values?.lastname}
+            name={"lastName"}
+            value={values?.lastName}
             onChange={onChange}
           />
         </InputRow>

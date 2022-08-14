@@ -1,17 +1,41 @@
+import ResultList from "@components/Home/Result/List";
 import Search from "@components/Home/Search";
+import { useForm } from "@hooks/useForm";
+import { searchRooms } from "@services/api";
 import { Room } from "@typeDefs/index";
 import React from "react";
 
 const Home: React.FC = () => {
   const [rooms, setRooms] = React.useState<Room[] | undefined>(undefined);
 
-  if (!rooms) return <Search rooms={rooms} setRooms={setRooms} />;
+  const handleSubmit = async () => {
+    const r = await searchRooms(values);
+    setRooms(r);
+  };
+
+  const { onSubmit, onChange, values } = useForm(handleSubmit, {
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    attendees: undefined,
+    morning: false,
+    afternoon: false,
+    date: undefined,
+    videoProjector: false,
+    whiteboard: false,
+    handicapAccess: false,
+  });
+
+  if (rooms && rooms.length > 0)
+    return <ResultList rooms={rooms} values={values} setRooms={setRooms} />;
   return (
-    <>
-      {rooms.map((room, i) => {
-        return <div key={i}>{room.name}</div>;
-      })}
-    </>
+    <Search
+      rooms={rooms}
+      onSubmit={onSubmit}
+      onChange={onChange}
+      values={values}
+    />
   );
 };
 
