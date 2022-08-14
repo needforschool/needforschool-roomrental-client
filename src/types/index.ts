@@ -1,6 +1,7 @@
 export type Room = {
-  id: number;
+  id: string;
   name: string;
+  thumbnailUrl: string;
   attendees: number;
   videoProjector: boolean;
   whiteboard: boolean;
