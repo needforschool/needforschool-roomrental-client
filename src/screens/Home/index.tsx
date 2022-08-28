@@ -2,10 +2,11 @@ import ResultList from "@components/Home/Result/List";
 import Search from "@components/Home/Search";
 import { useForm } from "@hooks/useForm";
 import { searchRooms } from "@services/api";
-import { Room } from "@typeDefs/index";
+import { Room } from "@typeDefs/main";
+import { NextPage } from "next";
 import React from "react";
 
-const Home: React.FC = () => {
+const Home: NextPage = () => {
   const [rooms, setRooms] = React.useState<Room[] | undefined>(undefined);
 
   const handleSubmit = async () => {
@@ -25,6 +26,8 @@ const Home: React.FC = () => {
     videoProjector: false,
     whiteboard: false,
     handicapAccess: false,
+    coffee: false,
+    lunch: false,
   });
 
   if (rooms && rooms.length > 0)
