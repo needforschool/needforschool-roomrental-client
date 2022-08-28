@@ -3,18 +3,17 @@ import styled from "styled-components";
 import ROUTES from "@constants/routes";
 import Head from "@components/Head";
 import { APP } from "@constants/main";
-import useTranslation from "@hooks/useTranslation";
 import Link from "next/link";
 import MainContainer from "@components/Layout/MainContainer";
+import { NextPage } from "next";
 
-const Error: React.FC = () => {
-  const { t } = useTranslation();
+const Error: NextPage = () => {
   return (
     <Container>
-      <Head title={t("error.head.title")} />
-      <Title>{t("error.title")}</Title>
+      <Head title={"error.head.title"} />
+      <Title>{"error.title"}</Title>
       <Description>
-        {t("error.desc")} <Link href={ROUTES.HOME}>{APP.NAME}</Link>.
+        {"error.desc"} <Link href={ROUTES.HOME}>{APP.NAME}</Link>.
       </Description>
     </Container>
   );
