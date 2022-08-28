@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Button from "@components/Layout/Button";
-import { Room } from "@typeDefs/index";
+import { Room } from "@typeDefs/main";
 
 interface Props {
   rooms: Room[] | undefined;
@@ -54,6 +54,11 @@ const Search: React.FC<Props> = ({
           <Input
             type="date"
             name={"date"}
+            min={
+              new Date(new Date().setDate(new Date().getDate() + 1))
+                .toISOString()
+                .split("T")[0]
+            }
             onChange={onChange}
             value={values?.date}
           />
@@ -118,6 +123,29 @@ const Search: React.FC<Props> = ({
             />
           </Checkbox>
         </InputRow>
+
+        <InputRow>
+          {/* checkbox to chose morning or afternoon */}
+          <Checkbox>
+            <CheckboxLabel>Café</CheckboxLabel>
+            <CheckboxInput
+              type="checkbox"
+              name={"coffee"}
+              onChange={onChange}
+              checked={values?.coffee}
+            />
+          </Checkbox>
+          <Checkbox>
+            <CheckboxLabel>Repas</CheckboxLabel>
+            <CheckboxInput
+              type="checkbox"
+              name={"lunch"}
+              onChange={onChange}
+              checked={values?.lunch}
+            />
+          </Checkbox>
+        </InputRow>
+
         <SubmitButton type={"submit"}>{"Rechercher"}</SubmitButton>
       </Form>
       {rooms && rooms.length == 0 && (
