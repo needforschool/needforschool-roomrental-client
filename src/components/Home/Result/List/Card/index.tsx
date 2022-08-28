@@ -1,7 +1,7 @@
 import Button from "@components/Layout/Button";
 import Image from "@components/Layout/Image";
 import { createRental } from "@services/api";
-import { Room } from "@typeDefs/index";
+import { Room } from "@typeDefs/main";
 import styled from "styled-components";
 
 interface Props {
@@ -57,6 +57,7 @@ const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.layout.darker};
   width: 100%;
   max-width: 300px;
+  margin-left: 10px;
 `;
 
 const ThumbnailImage = styled(Image)`

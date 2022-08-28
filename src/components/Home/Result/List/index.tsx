@@ -1,5 +1,5 @@
 import Button from "@components/Layout/Button";
-import { Room } from "@typeDefs/index";
+import { Room } from "@typeDefs/main";
 import styled from "styled-components";
 import Card from "./Card";
 
@@ -34,6 +34,7 @@ const Container = styled.div`
   width: 100%;
   align-items: center;
   justify-content: center;
+  margin-left: -10px;
 `;
 
 const Row = styled.div`
